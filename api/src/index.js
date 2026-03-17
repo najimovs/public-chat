@@ -16,9 +16,19 @@ const io = new Server( httpServer, {
 	}
 } )
 
-io.on( "connection", () => {
+const browsers = []
 
-	console.log( "New connection" )
+io.on( "connection", browser => {
+
+	browsers.push( browser )
+
+	browser.on( "NEW_MESSAGE_FROM_BROWSER_BY_INPUT", message => {
+
+		for ( const b of browsers ) {
+
+			b.emit( "NEW_MESSAGE_FROM_SERVER", message )
+		}
+	} )
 } )
 
 httpServer.listen( PORT, "0.0.0.0", () => {
