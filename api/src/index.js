@@ -16,7 +16,7 @@ const io = new Server( httpServer, {
 	}
 } )
 
-io.on( "connection", browser => {
+io.on( "connection", () => {
 
 	console.log( "New connection" )
 } )
