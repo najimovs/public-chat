@@ -17,12 +17,17 @@ const io = new Server( httpServer, {
 } )
 
 const browsers = []
+const messages = []
 
 io.on( "connection", browser => {
 
 	browsers.push( browser )
 
+	browser.emit( "PREV_MESSAGES", messages )
+
 	browser.on( "NEW_MESSAGE_FROM_BROWSER_BY_INPUT", message => {
+
+		messages.push( message )
 
 		for ( const b of browsers ) {
 

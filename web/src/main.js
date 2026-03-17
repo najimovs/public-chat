@@ -6,6 +6,17 @@ const input = document.querySelector( "input" )
 
 const server = io( "http://localhost:3000" )
 
+server.on( "PREV_MESSAGES", messages => {
+
+	for ( const m of messages ) {
+
+		const li = document.createElement( "li" )
+		li.textContent = m
+
+		ul.appendChild( li )
+	}
+} )
+
 input.addEventListener( "keyup", e => {
 
 	if ( e.code === "Enter" ) {
