@@ -3,5 +3,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "node --watch src/index.js"
+	},
+	"dependencies": {
+		"socket.io": "^4.8.3"
 	}
 }
